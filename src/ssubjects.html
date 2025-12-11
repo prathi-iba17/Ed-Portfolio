@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects | Ed-Portfolios</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+        }
+
+        /* ---------------- SIDEBAR ---------------- */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar li {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sidebar li:hover,
+        .sidebar li.active {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ---------------- MAIN AREA ---------------- */
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ---------------- SUBJECTS GRID ---------------- */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .subject-card h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .faculty {
+            font-size: 14px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            background: #eee;
+            height: 10px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 10px;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+        }
+
+        .tag {
+            font-size: 13px;
+            padding: 5px 10px;
+            background: #e0e7ff;
+            color: #333;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🎓 Student</h2>
+        <ul>
+            <li><a href="sdashboard.html">📊 Dashboard</a></li>
+            <li><a href="smarks.html">📝 Marks</a></li>
+            <li><a href="sattendance.html">📅 Attendance</a></li>
+            <li class="active"><a href="ssubjects.html">📚 Subjects</a></li>
+            <li><a href="sachievements.html">🔖 Achievements</a></li>
+            <li><a href="smessage.html">💬 Messages</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN SECTION -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h1>Your Subjects 📚</h1>
+            <button class="btn" onclick="window.location.href='login.html'">Logout</button>
+        </div>
+
+        <!-- SUBJECT CARDS -->
+        <div class="subjects-grid">
+
+            <!-- Subject 1 -->
+            <div class="subject-card">
+                <h3>Data Structures</h3>
+                <div class="faculty">👨‍🏫 Faculty: Dr. Ramesh Kumar</div>
+
+                <div class="tag">4 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 78%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:78%"></div>
+                </div>
+            </div>
+
+            <!-- Subject 2 -->
+            <div class="subject-card">
+                <h3>Web Technology</h3>
+                <div class="faculty">👩‍🏫 Faculty: Mrs. Priya Sharma</div>
+
+                <div class="tag">3 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 85%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:85%"></div>
+                </div>
+            </div>
+
+            <!-- Subject 3 -->
+            <div class="subject-card">
+                <h3>DBMS</h3>
+                <div class="faculty">👨‍🏫 Faculty: Mr. Vignesh</div>
+
+                <div class="tag">4 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 90%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:90%"></div>
+                </div>
+            </div>
+
+            <!-- Subject 4 -->
+            <div class="subject-card">
+                <h3>Computer Networks</h3>
+                <div class="faculty">👩‍🏫 Faculty: Mrs. Anitha</div>
+
+                <div class="tag">3 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 72%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:72%"></div>
+                </div>
+            </div>
+
+            <!-- Subject 5 -->
+            <div class="subject-card">
+                <h3>Python Programming</h3>
+                <div class="faculty">👨‍🏫 Faculty: Mr. Arjun</div>
+
+                <div class="tag">3 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 88%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:88%"></div>
+                </div>
+            </div>
+
+            <!-- Subject 6 -->
+            <div class="subject-card">
+                <h3>Operating Systems</h3>
+                <div class="faculty">👩‍🏫 Faculty: Dr. Kavitha</div>
+
+                <div class="tag">4 Credits</div>
+
+                <p style="margin-top:10px;">Completion: 80%</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width:80%"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

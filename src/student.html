@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | Ed-Portfolios</title>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #333; }
+
+        .sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; }
+
+        .sidebar h2 { margin-bottom: 30px; text-align: center; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin: 15px 0; cursor: pointer; padding: 10px; border-radius: 8px; transition: background 0.3s; }
+        .sidebar li:hover, .sidebar li.active { background: rgba(255,255,255,0.2); }
+        .sidebar a { color: white; text-decoration: none; display: block; }
+
+        .main { margin-left: 250px; padding: 20px; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; border-radius: 10px; }
+
+        .table-container { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden; margin-top: 20px; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; }
+
+        .btn { padding: 8px 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; border-radius: 8px; cursor: pointer; }
+
+        /* Chart Card */
+        .chart-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🛡️ Ed-Portfolios</h2>
+        <ul>
+            <li><a href="dashboard.html">📊 Dashboard</a></li>
+            <li class="active"><a href="students.html">👥 Students</a></li>
+            <li><a href="marks.html">📝 Marks</a></li>
+            <li><a href="fees.html">💰 Fees</a></li>
+            <li><a href="reports.html">📄 Reports</a></li>
+            <li><a href="insights.html">🎯 Insights</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <div class="topbar">
+            <h1>Students</h1>
+            <div>👋 Welcome, Admin | <button class="btn" onclick="window.location.href='login.html'">Logout</button>
+        </div>
+
+        <!-- STUDENT TABLE -->
+        <div class="table-container">
+            <h2 style="padding: 20px; background: #667eea; color: white; margin: 0;">Student List</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Marks</th>
+                        <th>Talent</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>S001</td>
+                        <td>Rahul Sharma</td>
+                        <td>12-A</td>
+                        <td>92%</td>
+                        <td>Coder</td>
+                        <td><button class="btn">View</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>S002</td>
+                        <td>Priya Patel</td>
+                        <td>11-B</td>
+                        <td>88%</td>
+                        <td>Artist</td>
+                        <td><button class="btn">View</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>S003</td>
+                        <td>Amit Kumar</td>
+                        <td>10-C</td>
+                        <td>85%</td>
+                        <td>Athlete</td>
+                        <td><button class="btn">View</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>S004</td>
+                        <td>Neha Singh</td>
+                        <td>9-A</td>
+                        <td>91%</td>
+                        <td>Dancer</td>
+                        <td><button class="btn">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+
+        <!-- 📊 CHART 1: Marks Comparison -->
+        <div class="chart-box">
+            <h2>Marks Comparison</h2>
+            <canvas id="marksChart"></canvas>
+        </div>
+
+        <!-- 🥧 CHART 2: Talent Distribution -->
+        <div class="chart-box">
+            <h2>Talent Distribution</h2>
+            <canvas id="talentChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- CHART JS -->
+    <script>
+        // BAR CHART (Marks)
+        new Chart(document.getElementById('marksChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Rahul', 'Priya', 'Amit', 'Neha'],
+                datasets: [{
+                    label: 'Marks (%)',
+                    data: [92, 88, 85, 91],
+                    backgroundColor: ['#667eea', '#764ba2', '#667eea', '#764ba2']
+                }]
+            }
+        });
+
+        // PIE CHART (Talent)
+        new Chart(document.getElementById('talentChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Coder', 'Artist', 'Athlete', 'Dancer'],
+                datasets: [{
+                    data: [1, 1, 1, 1],
+                    backgroundColor: ['#667eea', '#764ba2', '#ff9800', '#4caf50']
+                }]
+            }
+        });
+    </script>
+    <script>
+    document.querySelectorAll("table .btn").forEach(btn => {
+        if (btn.innerText === "View") {
+            btn.addEventListener("click", function () {
+                const studentId = this.closest("tr").children[0].innerText; 
+                window.location.href = "sprofile.html?id=" + studentId;
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

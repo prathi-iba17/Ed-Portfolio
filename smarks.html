@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks | Ed-Portfolios</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+        }
+
+        /* ---------------- SIDEBAR ---------------- */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar li {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sidebar li:hover,
+        .sidebar li.active {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ---------------- MAIN AREA ---------------- */
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ---------------- SECTION BOX ---------------- */
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f5f5ff;
+            font-weight: bold;
+        }
+
+        .status-excellent { color: #4caf50; font-weight: bold; }
+        .status-good { color: #2196f3; font-weight: bold; }
+        .status-average { color: #ff9800; font-weight: bold; }
+        .status-poor { color: #e53935; font-weight: bold; }
+
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🎓 Student</h2>
+        <ul>
+            <li><a href="sdashboard.html">📊 Dashboard</a></li>
+            <li class="active"><a href="smarks.html">📝 Marks</a></li>
+            <li><a href="sattendance.html">📅 Attendance</a></li>
+            <li><a href="ssubjects.html">📚 Subjects</a></li>
+            <li><a href="sachievements.html">🔖 Achievements</a></li>
+            <li><a href="smessage.html">💬 Messages</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h1>Your Marks 📘</h1>
+            <button class="btn" onclick="window.location.href='login.html'">Logout</button>
+        </div>
+
+        <!-- MARKS TABLE -->
+        <div class="section">
+            <h2>📄 Subject-wise Marks</h2>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Test 1</th>
+                    <th>Test 2</th>
+                    <th>Assignment</th>
+                    <th>Final Exam</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Math</td>
+                    <td>92</td><td>88</td><td>95</td><td>90</td>
+                    <td class="status-excellent">Excellent</td>
+                </tr>
+
+                <tr>
+                    <td>Science</td>
+                    <td>85</td><td>82</td><td>78</td><td>88</td>
+                    <td class="status-good">Good</td>
+                </tr>
+
+                <tr>
+                    <td>English</td>
+                    <td>75</td><td>80</td><td>70</td><td>78</td>
+                    <td class="status-average">Average</td>
+                </tr>
+
+                <tr>
+                    <td>Computer Science</td>
+                    <td>95</td><td>97</td><td>93</td><td>98</td>
+                    <td class="status-excellent">Excellent</td>
+                </tr>
+
+                <tr>
+                    <td>Physics</td>
+                    <td>82</td><td>85</td><td>80</td><td>86</td>
+                    <td class="status-good">Good</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- MARKS CHART -->
+        <div class="section">
+            <h2>📊 Marks Trend</h2>
+            <div class="chart-container">
+                <canvas id="marksTrend"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const ctx = document.getElementById("marksTrend").getContext("2d");
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Math", "Science", "English", "CS", "Physics"],
+                datasets: [{
+                    label: "Final Exam Marks",
+                    data: [90, 88, 78, 98, 86],
+                    backgroundColor: "rgba(102,126,234,0.7)",
+                    borderColor: "#667eea",
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

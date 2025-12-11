@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements | Ed-Portfolios</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+        }
+
+        /* ---------------- SIDEBAR ---------------- */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            padding: 20px;
+            color: #fff;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .sidebar li {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sidebar li:hover,
+        .sidebar li.active {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ---------------- MAIN ---------------- */
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ---------------- ACHIEVEMENTS GRID ---------------- */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 20px;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .achievement-card h3 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .achievement-card p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: gold;
+            color: #444;
+            padding: 10px 12px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🎓 Student</h2>
+        <ul>
+            <li><a href="sdashboard.html">📊 Dashboard</a></li>
+            <li><a href="smarks.html">📝 Marks</a></li>
+            <li><a href="sattendance.html">📅 Attendance</a></li>
+            <li><a href="ssubjects.html">📚 Subjects</a></li>
+            <li class="active"><a href="sachievements.html">🔖 Achievements</a></li>
+            <li><a href="smessage.html">💬 Messages</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <h1>Your Achievements 🏆</h1>
+            <button class="btn" onclick="window.location.href='login.html'">Logout</button>
+        </div>
+
+        <!-- ACHIEVEMENTS GRID -->
+        <div class="achievements-grid">
+
+            <!-- Card 1 -->
+            <div class="achievement-card">
+                <div class="badge">🥇</div>
+                <h3>First Place - Coding Hackathon</h3>
+                <p>Won 1st place in the National Level Coding Hackathon with a team of 3.</p>
+                <p><strong>Date:</strong> Aug 2024</p>
+                <div class="tag">Technical</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="achievement-card">
+                <div class="badge">🥈</div>
+                <h3>Runner-Up - Web Design Contest</h3>
+                <p>Developed a modern UI/UX website and secured 2nd place in the contest.</p>
+                <p><strong>Date:</strong> May 2024</p>
+                <div class="tag">Design</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="achievement-card">
+                <div class="badge">🏅</div>
+                <h3>Outstanding Academic Performer</h3>
+                <p>Scored above 90% in all internal assessments.</p>
+                <p><strong>Date:</strong> March 2024</p>
+                <div class="tag">Academic</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="achievement-card">
+                <div class="badge">⭐</div>
+                <h3>Volunteer - NSS Community Event</h3>
+                <p>Helped organize a social awareness program with 300+ participants.</p>
+                <p><strong>Date:</strong> July 2024</p>
+                <div class="tag">Social</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

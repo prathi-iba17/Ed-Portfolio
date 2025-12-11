@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students – Ed-Portfolios</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        .sidebar h2 { text-align: center; margin-bottom: 30px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar li {
+            margin: 15px 0; padding: 10px;
+            border-radius: 8px; transition: 0.3s;
+        }
+        .sidebar li:hover,
+        .sidebar li.active { background: rgba(255,255,255,0.2); }
+        .sidebar a {
+            text-decoration: none; color: white;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .main { margin-left: 250px; padding: 20px; }
+        .topbar {
+            display: flex; justify-content: space-between;
+            align-items: center; background: white;
+            padding: 15px 20px; border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 20px; margin-bottom: 30px;
+        }
+        .card {
+            background: white; padding: 20px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center;
+        }
+        .metric { font-size: 2.5em; font-weight: bold; }
+
+        .table-container {
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden; margin-bottom: 25px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px; border-bottom: 1px solid #eee; }
+        th { background: #f4f4f4; font-weight: 600; }
+
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color: white; border: none; border-radius: 8px;
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+
+        .chart-container { background:white; padding:20px; border-radius:12px;
+            box-shadow:0 4px 20px rgba(0,0,0,0.08); margin-bottom:25px; }
+
+        #popupForm {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none;
+            justify-content: center; align-items: center;
+        }
+        .popup-box {
+            background: white; padding: 25px; border-radius: 12px;
+            width: 350px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .popup-box input, .popup-box select {
+            width: 100%; padding: 10px; margin: 10px 0;
+            border: 1px solid #ccc; border-radius: 6px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>🛡️ Ed-Portfolios</h2>
+        <ul>
+            <li><a href="dashboard.html">📊 Dashboard</a></li>
+            <li class="active"><a href="student.html">👥 Students</a></li>
+            <li><a href="marks.html">📝 Marks</a></li>
+            <li><a href="fees.html">💰 Fees</a></li>
+            <li><a href="reports.html">📄 Reports</a></li>
+            <li><a href="insights.html">🎯 Insights</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="topbar">
+            <h1>Students</h1>
+            <div>👋 Welcome, Admin | <button class="btn" id="logoutBtn">Logout</button></div>
+        </div>
+
+        <div class="cards">
+            <div class="card"><h3>Total Students</h3><div class="metric">1,247</div></div>
+            <div class="card"><h3>New Admissions</h3><div class="metric" style="color:#4caf50;">42</div></div>
+            <div class="card"><h3>Top Talent</h3><div class="metric">Coder</div></div>
+            <div class="card"><h3>Attendance Avg</h3><div class="metric" style="color:#ff9800;">89%</div></div>
+        </div>
+
+        <button class="btn" style="margin-bottom:20px;" onclick="openForm()">➕ Add Student</button>
+
+        <div class="table-container">
+            <h2 style="padding:20px; background:#667eea; color:white;">Student List</h2>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Name</th><th>Marks</th><th>Talent</th><th>Action</th></tr>
+                </thead>
+                <tbody id="studentTable">
+                    <tr><td>S001</td><td>Rahul Sharma</td><td>92%</td><td>Coder</td>
+                        <td><button class="btn viewBtn">View</button></td></tr>
+                    <tr><td>S002</td><td>Priya Patel</td><td>88%</td><td>Artist</td>
+                        <td><button class="btn viewBtn">View</button></td></tr>
+                    <tr><td>S003</td><td>Amit Kumar</td><td>85%</td><td>Athlete</td>
+                        <td><button class="btn viewBtn">View</button></td></tr>
+                    <tr><td>S004</td><td>Neha Singh</td><td>90%</td><td>Dancer</td>
+                        <td><button class="btn viewBtn">View</button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="chart-container">
+                <h3>Talent Distribution</h3>
+                <canvas id="talentChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3>Gender Ratio</h3>
+                <canvas id="genderChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- POPUP FORM -->
+    <div id="popupForm">
+        <div class="popup-box">
+            <h2>Add Student</h2>
+
+            <input id="studentName" type="text" placeholder="Student Name">
+            <input id="studentId" type="text" placeholder="Student ID">
+
+            <select id="studentTalent">
+                <option>Select Talent</option>
+                <option>Coder</option>
+                <option>Artist</option>
+                <option>Athlete</option>
+                <option>Dancer</option>
+            </select>
+
+            <button class="btn" id="saveStudent" style="width:100%;">Save</button>
+            <br><br>
+            <button class="btn" style="background:#999;" onclick="closeForm()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+
+        // OPEN & CLOSE POPUP
+        function openForm(){ document.getElementById('popupForm').style.display='flex'; }
+        function closeForm(){ document.getElementById('popupForm').style.display='none'; }
+
+        // LOGOUT
+        document.getElementById("logoutBtn").onclick = () => {
+            window.location.href = "login.html";
+        };
+
+        // VIEW PROFILE BUTTON
+        function attachViewEvents() {
+            document.querySelectorAll(".viewBtn").forEach(btn => {
+                btn.onclick = function () {
+                    let id = this.closest("tr").children[0].innerText;
+                    window.location.href = "sprofile.html?id=" + id;
+                };
+            });
+        }
+        attachViewEvents();
+
+        // SAVE STUDENT
+        document.getElementById("saveStudent").addEventListener("click", function () {
+
+            let name = document.getElementById("studentName").value.trim();
+            let id = document.getElementById("studentId").value.trim();
+            let talent = document.getElementById("studentTalent").value;
+
+            if (name === "" || id === "" || talent === "Select Talent") {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            let table = document.getElementById("studentTable");
+
+            let newRow = `
+                <tr>
+                    <td>${id}</td>
+                    <td>${name}</td>
+                    <td>-</td>
+                    <td>${talent}</td>
+                    <td><button class='btn viewBtn'>View</button></td>
+                </tr>
+            `;
+
+            table.insertAdjacentHTML("beforeend", newRow);
+
+            closeForm();
+
+            document.getElementById("studentName").value = "";
+            document.getElementById("studentId").value = "";
+            document.getElementById("studentTalent").value = "Select Talent";
+
+            attachViewEvents();
+
+            alert("Student Added Successfully!");
+        });
+
+        // CHARTS
+        new Chart(document.getElementById("talentChart"), {
+            type: 'pie',
+            data: {
+                labels: ['Coder', 'Artist', 'Athlete', 'Dancer'],
+                datasets: [{ data: [40, 25, 20, 15],
+                    backgroundColor: ['#667eea','#9b59b6','#ff9800','#4caf50'] }]
+            }
+        });
+
+        new Chart(document.getElementById("genderChart"), {
+            type: 'doughnut',
+            data: {
+                labels: ['Boys', 'Girls'],
+                datasets: [{ data: [720, 527],
+                    backgroundColor: ['#2196f3','#e91e63'] }]
+            }
+        });
+
+    </script>
+
+</body>
+</html>
